@@ -6,13 +6,13 @@
 /*   By: mqueguin <mqueguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:39:25 by mqueguin          #+#    #+#             */
-/*   Updated: 2021/01/23 13:30:00 by mqueguin         ###   ########.fr       */
+/*   Updated: 2021/01/23 13:39:56 by mqueguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_strjoin_gnl(char *str, char *buffer)
+static char		*ft_strjoin_gnl(char *str, char *buffer)
 {
 	char	*new_line;
 	int		len_str;
@@ -36,7 +36,7 @@ static char	*ft_strjoin_gnl(char *str, char *buffer)
 	return (new_line);
 }
 
-static char	*ft_get_new_line(char *str)
+static char		*ft_get_new_line(char *str)
 {
 	char	*line;
 	int		len;
@@ -59,7 +59,7 @@ static char	*ft_get_new_line(char *str)
 	return (line);
 }
 
-static char	*ft_get_second_part(char *str)
+static char		*ft_get_second_part(char *str)
 {
 	char	*new_str;
 	int		len;
@@ -87,12 +87,12 @@ static char	*ft_get_second_part(char *str)
 	return (new_str);
 }
 
-int		get_next_line(int fd, char **line)
+int				get_next_line(int fd, char **line)
 {
 	char			*buffer;
 	static char		*str = NULL;
 	int				size_of_read;
-	
+
 	size_of_read = 1;
 	if (BUFFER_SIZE <= 0 || !line || fd < 0)
 		return (-1);
@@ -112,9 +112,6 @@ int		get_next_line(int fd, char **line)
 	*line = ft_get_new_line(str);
 	str = ft_get_second_part(str);
 	if (size_of_read == 0)
-	{
-		free(str);
 		return (0);
-	}
 	return (1);
 }
